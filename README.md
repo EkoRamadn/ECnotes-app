@@ -4,7 +4,6 @@ aplikasi catatan besis website mengunakan api publik untuk melakukan penyimpanan
 ### instalasi 
 clone repository
 
-`git clone `
-Hasil:
-```javascript
-console.log("Hello, World!");
+```
+git clone 
+
