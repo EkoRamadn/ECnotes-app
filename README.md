@@ -5,5 +5,16 @@ aplikasi catatan besis website mengunakan api publik untuk melakukan penyimpanan
 clone repository
 
 ```
-git clone 
+git clone https://github.com/EkoRamadn/ECnotes-app.git
+```
 
+install depedensi yang dibutuhkan
+
+```
+npm init
+```
+
+jalankan aplikasi
+
+```
+npm run 
