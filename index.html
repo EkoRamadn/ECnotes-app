@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Notes App</title>
+        <!-- Favicons -->
+        <link rel="icon" href="logo.jpg" />
+    </head>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        loading-animation {
+            display: none;
+        }
+        #del-container {
+            position: fixed;
+            left: 0;
+            bottom: -100%;
+            width: 100%;
+            transition: 0.3s all linear;
+        }
+        #del-container.show {
+            bottom: 0;
+        }
+        #note-info {
+            position: fixed;
+            right: -100%;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            transition: 0.3s all linear;
+        }
+        #note-info.show {
+            right: 0;
+        }
+        @media only screen and (min-width: 708px) {
+            #del-container {
+                width: 300px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            #del-container.show {
+                bottom: 50%;
+            }
+        }
+    </style>
+    <body>
+        <div class="container">
+            <div>
+                <header>
+                    <header-bar></header-bar>
+                </header>
+                <search-bar></search-bar>
+                <main>
+                    <section id="noteListContainer">
+                        <loading-animation></loading-animation>
+
+                        <note-list></note-list>
+                    </section>   
+                </main>
+            </div>
+
+            <footer>
+                <p>NotesApps V.0.1</p>
+                <p>By EkoRamadani👋2024</p>
+            </footer>
+        </div>
+        <div class="bg-cencel"></div>
+        <div class="add-note" id="create-note">
+            <h2>Create New Note</h2>
+            <form action="" id="creator">
+                <input
+                    type="text"
+                    name="title"
+                    id="title"
+                    placeholder="Title.."
+                    minlength="3"
+                    required
+                />
+                <textarea
+                    placeholder="more information"
+                    name="body"
+                    id="body"
+                    minlength="6"
+                    required
+                ></textarea>
+                <!-- <div class="group-input-1">
+                    <input type="date" name="date" id="date" required />
+                </div>
+                <div class="group-input">
+                    <input type="checkbox" name="archive" id="archive" />
+                    <label for="archive">archive</label>
+                </div> -->
+                <div class="button-action">
+                    <button
+                        type="reset"
+                        class="btn-cencel"
+                        onclick="removeShow()"
+                    >
+                        Cencel
+                    </button>
+                    <button class="btn-create">Create</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="note-info"></div>
+        <div id="del-container"></div>
+
+        <div class="splash-screen">
+            <div class="logo">
+                <div class="logoimage">
+                    <img src="logo.jpg" alt="" />
+                </div>
+                <div class="logotext">EC <span>Notes</span></div>
+            </div>
+
+            <div class="ilus">
+                <img src="ilustrasion.svg" alt="" />
+            </div>
+            <div class="loading">
+                <span></span><span></span><span></span><span></span>
+            </div>
+        </div>
+
+        <script type="module" src="./src/app.js"></script>
+        <script>
+            const deleteContainerElement =
+                document.querySelector("#del-container")
+
+            window.addEventListener("confirmDelete", async (event) => {
+                deleteContainerElement.innerHTML = await ""
+                const dleteContent =
+                    await document.createElement("confirm-delete")
+                const note = await event.detail
+                dleteContent.note = await note
+
+                await deleteContainerElement.appendChild(dleteContent)
+            })
+
+            window.addEventListener("load", function () {
+                if (sessionStorage.getItem("login")) {
+                    document.querySelector(".splash-screen").style.display =
+                        "none"
+                } else {
+                    setTimeout(() => {
+                        document
+                            .querySelector(".splash-screen")
+                            .classList.add("hide")
+                        sessionStorage.setItem("login", true)
+                        setTimeout(() => {
+                            if (!sessionStorage.getItem("active")) {
+                                let info = document.createElement(
+                                    "information-component",
+                                )
+                                document.body.appendChild(info)
+                                info.show()
+                            }
+                        }, 700)
+                    }, 5000)
+                }
+            })
+            const removeShow = () => {
+                document.querySelector("#create-note").classList.remove("show")
+                document.querySelector(".bg-cencel").classList.remove("show")
+            }
+
+            const popupContainer = document.createElement("popup-alert")
+            document.body.appendChild(popupContainer)
+        </script>
+    </body>
+</html>

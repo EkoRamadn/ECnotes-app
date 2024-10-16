@@ -1,0 +1,284 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+body {
+  background-color: #eeeeee;
+}
+.splash-screen {
+  display: block;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+
+  transition: 0.4s all ease-in;
+}
+.splash-screen.hide {
+  bottom: -100%;
+  border-radius: 25px;
+  border: 1px solid black;
+}
+.container {
+  padding-inline: 1.6rem;
+  /* padding-block: 1.8rem; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  /* display: none; */
+  /* display: grid;
+    grid-template-areas: 
+            "head"
+            "main"
+            "footer"
+        ; */
+}
+header {
+  grid-area: head;
+  padding-block: 1.8rem 1.2rem;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+main {
+  grid-area: main;
+}
+
+footer {
+  padding-block: 1rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-area: footer;
+  text-align: center;
+}
+.add-note {
+  z-index: 999;
+  width: 100%;
+  height: 60vh;
+  padding: 1rem 1.6rem;
+  background-color: aliceblue;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border: 1px solid black;
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  right: 0;
+  transition: 0.3s all linear;
+}
+.add-note.show {
+  bottom: 0;
+}
+.add-note h2 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+.add-note form {
+  height: 40vh;
+  display: grid;
+  grid-template-columns: auto;
+  gap: 0;
+}
+.add-note input:first-child {
+  height: 45px;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+.add-note textarea {
+  height: 60px;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-bottom: 1rem;
+}
+.add-note .button-action {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+.add-note .button-action button {
+  width: 6rem;
+  height: 2rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.add-note .button-action .btn-cencel {
+  border: 1px solid #7e8ef1;
+}
+.add-note .button-action .btn-create {
+  background-color: #7e8ef1;
+}
+.bg-cencel {
+  display: none;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.bg-cencel.show {
+  display: block;
+}
+.group-input {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.group-input-1 {
+  background-color: rgb(126, 142, 241);
+  width: max-content;
+  padding: 3px;
+  border-radius: 2px;
+}
+@media only screen and (min-width: 708px) {
+  .add-note {
+    width: 50%;
+    height: max-content;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    border-radius: 15px;
+  }
+  .add-note form {
+    height: max-content;
+  }
+  .add-note.show {
+    bottom: 40%;
+  }
+}
+
+@media only screen and (min-width: 708px) {
+  .container {
+    padding-inline: 15%;
+  }
+  .notes-list {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 0.5rem;
+  }
+}
+/* notes-list end */
+span {
+  color: #615efc;
+}
+.splash-screen {
+  display: block;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #fff; /* Ensure a background color */
+}
+
+.loading {
+  display: flex;
+  gap: 3px;
+}
+
+.loading span {
+  width: 7px;
+  aspect-ratio: 1/1;
+  background-color: #000;
+  border-radius: 50%;
+}
+
+.loading span:nth-child(1) {
+  animation: changeColor 1s infinite alternate;
+}
+
+.loading span:nth-child(2) {
+  animation: changeColor 0.8s infinite alternate;
+}
+
+.loading span:nth-child(3) {
+  animation: changeColor 0.5s infinite alternate;
+}
+
+.loading span:nth-child(4) {
+  animation: changeColor 0.2s infinite alternate;
+}
+
+.ilus {
+  width: 80%;
+  max-width: 400px; /* Limit maximum width */
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logotext {
+  font-weight: 800;
+  line-height: 1;
+  width: auto;
+  font-size: 1.5rem;
+  margin-left: 10px; /* Add some space between logo and text */
+}
+
+.logoimage img {
+  width: 100%;
+}
+
+.logoimage {
+  width: 50px;
+  border-radius: 10px 0px 10px 10px;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+}
+
+/* Keyframes for the loading animation */
+@keyframes changeColor {
+  0% {
+    background-color: rgb(207, 207, 207);
+  }
+  50% {
+    background-color: rgb(72, 72, 72);
+  }
+  100% {
+    background-color: rgb(30, 30, 30);
+  }
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .logotext {
+    font-size: 1.2rem;
+    width: auto;
+  }
+  .logoimage {
+    width: 40px;
+  }
+  .ilus {
+    width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .logotext {
+    font-size: 1rem;
+  }
+  .logoimage {
+    width: 30px;
+  }
+  .ilus {
+    width: 100%;
+  }
+  .loading span {
+    width: 5px;
+  }
+}
