@@ -17,4 +17,5 @@ npm init
 jalankan aplikasi
 
 ```
-npm run 
+npm run dev
+```
